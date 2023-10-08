@@ -39,7 +39,22 @@ public class CommentApiController {
     }
 
     //comment update
+    @PatchMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> update(@PathVariable Long id, @RequestBody CommentDto dto){
+        //action service
+        CommentDto commentDto = commentService.update(id, dto);
+        //return values
+        if (commentDto == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.OK).body(commentDto);
+    }
 
     //comment delete
-
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> delete(@PathVariable Long id){
+        //action service
+        CommentDto commentDto = commentService.delete(id);
+        //return values
+        return ResponseEntity.status(HttpStatus.OK).body(commentDto);
+    }
 }

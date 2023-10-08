@@ -29,4 +29,15 @@ public class Comment {
         //entity create and return
         return new Comment(commentDto.getId(), commentDto.getNickname(), commentDto.getBody(), article);
     }
+
+    public void patch(CommentDto dto) {
+        //예외발생
+        if (this.id != dto.getId())
+            throw new IllegalArgumentException("댓글의 id가 잘못됐습니다.");
+        //객체 갱신
+        if (dto.getNickname() != null)
+            this.nickname = dto.getNickname();
+        if (dto.getBody() != null)
+            this.body = dto.getBody();
+    }
 }

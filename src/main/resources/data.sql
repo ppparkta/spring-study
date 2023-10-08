@@ -7,3 +7,5 @@ insert into comment(body, nickname, article_id) values('으으으음 테스트 �
 insert into comment(body, nickname, article_id) values('찐 테스트','hoony',1);
 insert into comment(body, nickname, article_id) values('으으으음 테스트 코멘트맞는디...','dohun',2);
 insert into comment(body, nickname, article_id) values('찐 테스트','hoony',2);
+insert into pizza(name, price) values('snack', '1500');
+insert into pizza(name, price) values('juice', '1000');

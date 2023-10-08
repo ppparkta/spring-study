@@ -47,4 +47,22 @@ public class CommentService {
         //db에 저장한 엔티티 dto로 변환해서 반환하기
         return CommentDto.createDto(created);
     }
+    @Transactional
+    public CommentDto update(Long id, CommentDto dto) {
+        //db 조회 및 예외발생
+        Comment comment = commentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("댓글 조회 실패"));
+        //update comment
+        comment.patch(dto);
+        //setData
+        Comment update = commentRepository.save(comment);
+        //dto convert
+        return CommentDto.createDto(update);
+    }
+
+    @Transactional
+    public CommentDto delete(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("댓글 삭제 실패"));
+        commentRepository.delete(comment);
+        return CommentDto.createDto(comment);
+    }
 }
